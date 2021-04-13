@@ -1,0 +1,22 @@
+{
+  "name": "breatheazy",
+  "version": "1.0.0",
+  "description": "API for the BreatheEazy application",
+  "main": "server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/ksbains/BreathEazy.git"
+  },
+  "author": "Karanbir Bains",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/ksbains/BreathEazy/issues"
+  },
+  "homepage": "https://github.com/ksbains/BreathEazy#readme",
+  "dependencies": {
+    "express": "^4.17.1"
+  }
+}
