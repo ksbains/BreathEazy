@@ -1,2 +1,2 @@
 # BreathEazy
-Air quality Application
+## Air quality Application to help users BreathEazy ;)

@@ -7,7 +7,6 @@ function storeData (data) {
 
 function userInDB(user){
     const username = user.username
-    console.log("The username is: " + username)
     //this will be replaced with DB checks
     var users = ["VOID", "alice", "bob", "charlie"]
     for(var i = 0; i < users.length; i++){
@@ -18,7 +17,6 @@ function userInDB(user){
     return false;
 }
 function passwordInDB(user){
-    console.log("The password is: " + user.password)
     var passwords = ["VOID","alice123", "bobISbob", "floaTruth"]
     for(var i = 0; i < passwords.length; i++){
         if(user.password == passwords[i] && i == userInDB(user)){
