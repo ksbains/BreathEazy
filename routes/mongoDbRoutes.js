@@ -30,6 +30,19 @@ router.get('/:username', async (req,res) => {
 
 //***********************************AQI******************************** */
 
+router.get('/sensor', async (req,res) => {
+    try {
+        const sensorData = await Sensor.find();
+        console.log(sensorData)
+        res.json(sensorData);
+    } catch (err) {
+        res.status(200);
+        console.log("Oh no, there has been an error!!")
+        console.log(err)
+        res.json({message: err});
+    }
+});
+
 
 
 //***************************************************************************POST ******************* ************************************/
@@ -53,7 +66,7 @@ router.post('/user', async (req,res) => {
         res.json(savedUser);
     } catch (err){
         res.status(200);
-        res.json({message: err});
+        res.json(req);
     }       
 });
 
