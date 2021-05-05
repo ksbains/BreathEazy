@@ -65,7 +65,7 @@ router.post('/user', async (req,res) => {
         const savedUser = await user.save();
         res.json(savedUser);
     } catch (err){
-        res.status(200);
+        res.status(201);
         res.json(req);
     }       
 });
@@ -75,10 +75,12 @@ router.post('/user', async (req,res) => {
 router.post('/sensor', async (req,res) => {
     var sensorInfo = req.body;
     const sensor = new Sensor({
+        username: sensorInfo.username,
         pm2_5Data: sensorInfo.pm2_5Data,
         pm10Data: sensorInfo.pm10Data,
         tempData: sensorInfo.tempData,
-        humidityData: sensorInfo.humidityData
+        humidityData: sensorInfo.humidityData,
+        dateTimeData: sensorInfo.dateTimeData
     })
     
     try {
