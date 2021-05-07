@@ -43,6 +43,19 @@ router.get('/sensor', async (req,res) => {
     }
 });
 
+router.get('/sensor/:username', async (req,res) => {
+    var username = req.params.username;
+    try {
+        const sensorData = await Sensor.find({username: username}).sort({ date: -1 }).limit(1)
+        //console.log(sensorData)
+        res.json(sensorData);
+    } catch (err) {
+        res.status(200);
+        console.log("Oh no, there has been an error!!")
+        console.log(err)
+        res.json({message: err});
+    }
+});
 
 
 //***************************************************************************POST ******************* ************************************/

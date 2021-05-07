@@ -1,8 +1,10 @@
-h1 {
-    color: red;
-    background-color: royalblue;
+#header {
+    font-size: xx-large;
+    font-weight: bold;
+    text-align: center;
+    color:royalblue;
+    background-color: gray;
 }
-
 .selector-for-some-widget {
     box-sizing: content-box;
   }

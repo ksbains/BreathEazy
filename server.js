@@ -14,7 +14,7 @@ const options = {
     bufferMaxEntries: 0
 }
 mongoose.connect(mongoDBName, options, (err, res) => {
-    if(err){
+    if (err) {
         console.log(err);
         console.log("MongoDb connection FAILED!!")
     } else {
