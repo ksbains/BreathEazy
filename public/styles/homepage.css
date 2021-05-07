@@ -1,11 +1,17 @@
 #header {
-    font-size: xx-large;
+    font-size: 150;
     font-weight: bold;
-    text-align: center;
+    min-height: 200px;
     color:royalblue;
     background-color: gray;
 }
-.selector-for-some-widget {
-    box-sizing: content-box;
-  }
-  
+
+h3 {
+    text-align: center;
+}
+
+#dataLabel{
+    text-align: left;
+}
+
+

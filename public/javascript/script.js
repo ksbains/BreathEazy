@@ -1,6 +1,9 @@
 var selection = document.querySelector('select')
 selection.addEventListener('change', getUserData)
 
+var button = document.getElementById("newData")
+button.addEventListener("click", getUserData)
+
 function ajaxPromise(apiPath){
     return $.ajax({
         url:apiPath,
