@@ -1,9 +1,10 @@
 const express = require('express');
 const app = express();
 const mongoose = require('mongoose');
+const path = require('path');
 app.use(express.json());
 const port = process.env.PORT || 3000;
-
+app.use(express.static(path.join(__dirname, 'public')));
 //DB Connect
 const mongoDBName = 'mongodb+srv://yash123:yash123@tmcluster.wzjib.mongodb.net/IAQ-Data';
 const options = {
@@ -28,7 +29,7 @@ const guiRoutes = require('./routes/gui');
 
 //Routes
 app.get('/', (req, res) => {
-    res.send("This is the main page for BreatheEazy!")
+    res.sendFile(path.join(__dirname, '/public/view/sensor.html'))
     console.log("Sever route, '/' has been hit!")
 });
 

@@ -1,0 +1,9 @@
+h1 {
+    color: red;
+    background-color: royalblue;
+}
+
+.selector-for-some-widget {
+    box-sizing: content-box;
+  }
+  
