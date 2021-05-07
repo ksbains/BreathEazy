@@ -6,7 +6,7 @@ function getUserData(){
     var username = document.getElementById("users").value;
     // make a query to the mongo db database, get the 
     let apiPath = 'https://breatheazy-api.herokuapp.com/mongo/sensor/'
-    //let apiPath = 'http://localhost:3000/mongo/sensor/'
+    // let apiPath = 'http://localhost:3000/mongo/sensor/'
     apiPath = apiPath + username;
     console.log(apiPath)
     $.getJSON(apiPath, function (data){
