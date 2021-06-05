@@ -1,8 +1,10 @@
 const express = require('express');
 const app = express();
+const cors = require('cors')
 const mongoose = require('mongoose');
 app.use(express.json());
-const port = process.env.PORT || 3000;
+app.use(cors())
+const port = process.env.PORT || 2000;
 
 //DB Connect
 const mongoDBName = 'mongodb+srv://yash123:yash123@tmcluster.wzjib.mongodb.net/IAQ-Data';
@@ -35,5 +37,11 @@ app.get('/', (req, res) => {
 app.use('/pi', raspberyyPiRoutes);
 app.use('/mongo', mongoDbRoutes);
 app.use('/gui', guiRoutes)
+// app.use(function (req, res, next) {
+//     res.header("Access-Control-Allow-Origin", "*");
+//     res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
+//     next();
+// });
+
 
 app.listen(port, () => console.log('Listening on port 3000'));

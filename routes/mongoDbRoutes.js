@@ -29,18 +29,19 @@ router.get('/:username', async (req,res) => {
 })
 
 //***********************************AQI******************************** */
-
-router.get('/sensor', async (req,res) => {
+router.get('/allUsers', async (req, res) => {
     try {
-        const sensorData = await Sensor.find();
-        console.log(sensorData)
-        res.json(sensorData);
+        const user = await Sensor.find();
+        res.json(user);
     } catch (err) {
         res.status(200);
-        console.log("Oh no, there has been an error!!")
-        console.log(err)
         res.json({message: err});
     }
+});
+
+router.get('/sensor', async (req,res) => {
+    console.log("HEY")
+    res.send("HI");
 });
 
 
@@ -90,6 +91,25 @@ router.post('/sensor', async (req,res) => {
         res.status(200);
         res.json({message: err});
     }       
+});
+
+router.post('/sensorz', async (req,res) => {
+    const data = []
+    Sensor.find({ "username": req.body.username }).sort({_id:-1}).exec((error, sensor) => {
+        if (error) {
+        console.log(error);
+        res.status(202).end('Error Occured');
+        }
+           if (sensor) {
+      sensor.forEach((element) => {
+        data.push(element);
+      });
+    }
+    // console.log(data);
+
+        res.send(data);
+        // console.log(data);
+    });
 });
 
 module.exports = router;
