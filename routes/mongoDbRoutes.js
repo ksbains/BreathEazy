@@ -92,4 +92,23 @@ router.post('/sensor', async (req,res) => {
     }       
 });
 
+router.post('/sensorz', async (req,res) => {
+    const data = []
+    Sensor.find({ "username": req.body.username }).sort({_id:-1}).exec((error, sensor) => {
+        if (error) {
+        console.log(error);
+        res.status(202).end('Error Occured');
+        }
+           if (sensor) {
+      sensor.forEach((element) => {
+        data.push(element);
+      });
+    }
+    // console.log(data);
+
+        res.send(data);
+        // console.log(data);
+    });
+});
+
 module.exports = router;
