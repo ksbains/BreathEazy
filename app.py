@@ -21,20 +21,16 @@ db = client['IAQ-Data']
 @app.route('/predict', methods=['GET'])
 def predict():
     start_index = pd.Timestamp(pd.datetime.now().strftime("%Y-%m-%d %X"))
-    end_index = start_index + pd.Timedelta(hours=1)
-    type = request.args.get('type')
-    model = None
-    if type == '0':
-        print("predict for 2.5")
-        with open('./models/result25.pkl','rb') as f_in:
-            model = pickle.load(f_in)
-    elif type == '1':
-        print("predict for 2.5")
-        with open('./models/result10.pkl','rb') as f_in:
-            model = pickle.load(f_in)
-    forecast = model.predict(start = start_index, end = end_index)
+    with open('./models/result25.pkl','rb') as f_in:
+        model25 = pickle.load(f_in)
+    with open('./models/result10.pkl','rb') as f_in:
+        model10 = pickle.load(f_in)
+
+    forecast10 = model10.predict(start = start_index, end = start_index)
+    forecast25 = model25.predict(start = start_index, end = start_index)
     response = {
-        'predictions' : list(forecast)
+        'pm10prediction' : float(forecast10),
+        'pm25prediction' : float(forecast25)
     }
     return jsonify(response)
      
