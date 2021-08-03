@@ -2,7 +2,7 @@ const express = require('express');
 const app = express();
 const mongoose = require('mongoose');
 app.use(express.json());
-const port = process.env.PORT || 2000;
+const port = process.env.PORT || 3000;
 
 //DB Connect
 const mongoDBName = 'mongodb+srv://yash123:yash123@tmcluster.wzjib.mongodb.net/IAQ-Data';

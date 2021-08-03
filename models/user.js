@@ -34,7 +34,19 @@ const userSchema = mongoose.Schema({
     houseAge: {
         type: Number,
         required: false
-    }
+    },
+    homeOwnerType: {
+        type: String,
+        required: false
+    },
+    dataProvider:  {
+        type: Boolean, 
+        required: false
+    },
+    dataSharer:  {
+        type: Boolean, 
+        required: false
+    },
 });
 
 module.exports = mongoose.model('user', userSchema);
