@@ -3,6 +3,7 @@ const express = require('express');
 const router = express.Router();
 const User = require('../models/user');
 const Sensor = require('../models/sensor');
+const Prediction = require('../models/prediction');
 
 //**************************************************** */ GET ROUTES ************************************************
 
@@ -23,16 +24,45 @@ router.get('/sensorz', async (req,res) => {
 });
 
 router.get('/user', async (req, res) => {
-    const {
-        user: username
-    } = req.query;
+  // const {
+  //     user: username
+  // } = req.query;
 
-    const options = {
-        username
-    };
+  const options = {
+      dataSharer: true
+  };
 
-    const profile = await User.find(options);
-    res.json(profile);
+  const profiles = await User.find(options);
+  
+  const PMData = await Promise.all(
+      profiles.map(profile => Sensor.findOne({
+          username: profile.username
+      }).sort({ _id: -1 }).then(x => {
+          return {
+              pm10Data: x.pm10Data,
+              pm2_5Data: x.pm2_5Data,
+              username: x.username,
+              lat: profile.lat,
+              lon: profile.lon
+          }
+      }))
+  );
+
+  res.json(PMData);
+});
+
+router.get('/prediction', async (req,res) => {
+  const {
+      user: username,
+      limit = 2,
+  } = req.query;
+
+  const options = {
+      username
+  };
+
+  const data = await Prediction.find(options).sort({ _id: -1 }).limit(parseInt(limit));
+  res.json(data);
 });
 
 router.get('/sensorz', async (req,res) => {
@@ -376,7 +406,7 @@ router.post('/updateac', async (req,res) => {
     const myquery = {username: req.body.username};
     const newvalue = {
      $set: {
-        dataSharer: req.body.dataSharer, dataProvider: req.body.dataProvider, houseAge: req.body.houseAge, isSmoker: req.body.isSmoker, homeType: req.body.homeType, hasAC: req.body.hasAC, homeOwnerType: req.body.homeOwnerType
+        dataSharer: req.body.dataSharer, dataProvider: req.body.dataProvider, houseAge: req.body.houseAge, isSmoker: req.body.isSmoker, homeType: req.body.homeType, hasAC: req.body.hasAC, homeOwnerType: req.body.homeOwnerType, lat: req.body.lat, lon: req.body.long 
      },
    };
  

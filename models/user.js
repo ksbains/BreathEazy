@@ -47,6 +47,14 @@ const userSchema = mongoose.Schema({
         type: Boolean, 
         required: false
     },
+    lat:  {
+        type: Number, 
+        required: false
+    },
+    lon:  {
+        type: Number, 
+        required: false
+    }
 });
 
 module.exports = mongoose.model('user', userSchema);
