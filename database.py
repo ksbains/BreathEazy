@@ -1,3 +1,4 @@
+from os import lseek
 import pymongo
 import pandas as pd
 
@@ -14,8 +15,12 @@ except Exception:
 
 def fetch():
     print("fetch called from models")
-    cursor = db['sensors'].find({'username':'sshekhar93'})
+    cursor = db['sensors'].find()
     data = list(cursor)
+    print(data[:30])
+    print(len(data))
+    print("Break")
     df = pd.DataFrame(data)#, columns = ['_id', 'username', 'pm2_5Data', 'pm10Data', 'tempData', 'humidityData', 'dateTimeData', '__v'])
-    df.head()
-    df.to_csv('./models/train.csv')
+    print(df.head())
+    print(df.size)
+    df.to_csv('train.csv')

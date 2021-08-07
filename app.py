@@ -4,6 +4,7 @@ import pandas as pd
 import pickle
 from os import path
 import models
+import json
 
 app = Flask(__name__)
 
@@ -39,13 +40,13 @@ def home():
     cursor = db['sensors'].find()
     data = list(cursor)
     df = pd.DataFrame(data)#, columns = ['_id', 'username', 'pm2_5Data', 'pm10Data', 'tempData', 'humidityData', 'dateTimeData', '__v'])
-    df.head()
+    print(df.head())
     df.to_csv('train.csv')
-    jsonString = dumps(data)
-    return jsonString
+    # jsonString = json.dumps(data)
+    return json.dumps({"data size": int(df.size)})
     # render_template('home.html')
 
 if __name__ == "__main__":
     if not path.exists("./models/result25.pkl"):
         models.train()
-    app.run(host='0.0.0.0', port='80',debug=True)
+    app.run(debug=True)
